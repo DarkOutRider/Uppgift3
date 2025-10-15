@@ -99,6 +99,7 @@ load_data('db_products.csv')
 os.system("cls")
 
 while True:
+    
     list_products(products)
 
     option = int(input("vad vill du göra? [1 = visa, 2 = lägg till, 3 = ta bort]"))
@@ -121,3 +122,19 @@ while True:
         idx = int(input("välj vilken product med id nummer: "))
         change_products(products)
     input()
+
+
+    import csv
+
+
+
+    # Define the CSV file path
+    csv_file_path = "db_products.csv"
+
+    # Write the products data to a CSV file
+    with open(csv_file_path, mode='w', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=["id", "name", "desc", "price", "quantity"])
+        writer.writeheader()  # Write the header row
+        writer.writerows(products)  # Write the product data
+
+    print(f"Data successfully saved to {csv_file_path}")
